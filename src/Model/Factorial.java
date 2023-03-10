@@ -3,8 +3,9 @@ import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.concurrent.Callable;
 
-public class Factorial implements Runnable {
+public class Factorial implements Callable {
     private List<Integer> forNumbers = new ArrayList<>();
     public Factorial(List<Integer> forNumbers) {
         this.forNumbers = forNumbers;
@@ -27,7 +28,8 @@ public class Factorial implements Runnable {
     }
 
     @Override
-    public void run() {
+    public ArrayList<String> call() {
+        ArrayList<String> factorialResultsList = new ArrayList<>();
         BigInteger result = BigInteger.valueOf(1);
 
         for(int i = 0; i < forNumbers.size(); i++) {
@@ -35,8 +37,9 @@ public class Factorial implements Runnable {
                 result = result.multiply(BigInteger.valueOf(j));
             }
             String s = "Факториал числа " + forNumbers.get(i) + " равен " + result;
-            System.out.println(s);
+            factorialResultsList.add(s);
             result = BigInteger.valueOf(1);
         }
+        return factorialResultsList;
     }
 }

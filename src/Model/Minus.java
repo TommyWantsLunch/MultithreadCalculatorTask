@@ -3,8 +3,9 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.concurrent.Callable;
 
-public class Minus implements Runnable {
+public class Minus implements Callable {
     private List<BigDecimal> forNumbers = new ArrayList<>();
     public Minus(List<BigDecimal> forNumbers) {
         this.forNumbers = forNumbers;
@@ -27,7 +28,7 @@ public class Minus implements Runnable {
     }
 
     @Override
-    public void run() {
+    public String call() {
         BigDecimal result = forNumbers.get(0);
         for(int i = 1; i < forNumbers.size(); i++) {
             result = result.subtract(forNumbers.get(i));
@@ -37,6 +38,6 @@ public class Minus implements Runnable {
             s = s + d + " ";
         }
         s = s + "равен " + result;
-        System.out.println(s);
+        return s;
     }
 }

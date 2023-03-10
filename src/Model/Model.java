@@ -2,9 +2,11 @@ package Model;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Callable;
 
 public class Model {
-    public List<Runnable> tasks = new ArrayList<>();
+    public List<Callable> tasks = new ArrayList<>();
+    public List<String> results = new ArrayList<>();
 
     public void addPlusTask() {
         ArrayList<BigDecimal> listForPlus = new ArrayList<>(Plus.plusMain());
@@ -26,9 +28,19 @@ public class Model {
         ArrayList<Integer> listForFactorial = new ArrayList<>(Factorial.factorialMain());
         tasks.add(new Factorial(listForFactorial));
     }
-    public void getResults() {
-        for(Runnable r: tasks) {
-            r.run();
+    public void getResults() throws Exception {
+        for(Callable c: tasks) {
+            if(c.getClass() == Factorial.class) {
+                ArrayList<String> factorialResults = ((Factorial) c).call();
+                for (String ss: factorialResults) {
+                    results.add(ss);
+                }
+            } else {
+                results.add((String) c.call());
+            }
+        }
+        for (String s: results) {
+            System.out.println(s);
         }
     }
 

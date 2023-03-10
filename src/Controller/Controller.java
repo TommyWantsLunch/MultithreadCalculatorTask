@@ -5,7 +5,7 @@ import View.View;
 public class Controller {
     private final Model model = new Model();
     private final View view = new View();
-    public void start() {
+    public void start() throws Exception {
         while (true) {
             String operationNumber = view.printCommands();
             if(operationNumber.equals("6")){
