@@ -1,8 +1,8 @@
 package Model;
+import View.View;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 import java.util.concurrent.Callable;
 
 public class Plus implements Callable {
@@ -14,9 +14,7 @@ public class Plus implements Callable {
         ArrayList<BigDecimal> inputBigDecimalNumbers = new ArrayList<>();
         while(true) {
             try {
-                System.out.println("Введите числа через пробел для проведения вычислений.");
-                Scanner scanner = new Scanner(System.in);
-                ArrayList<String> inputNumbers = new ArrayList<>(List.of(scanner.nextLine().split(" ")));
+                ArrayList<String> inputNumbers = View.listOfUserNumbers();
                 for (String s : inputNumbers) {
                     inputBigDecimalNumbers.add(BigDecimal.valueOf(Double.parseDouble(s)));
                 }
@@ -33,11 +31,11 @@ public class Plus implements Callable {
         for(BigDecimal d: forNumbers) {
             result = result.add(d);
         }
-        String s = "Результат суммы чисел ";
-        for(BigDecimal d: forNumbers) {
+        String s = View.plusResult;
+        for (BigDecimal d : forNumbers) {
             s = s + d + " ";
         }
-        s = s + "равен " + result;
+        s = s + View.amountTo + result;
         return s;
     }
 }
