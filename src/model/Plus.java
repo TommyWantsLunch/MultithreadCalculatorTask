@@ -1,17 +1,16 @@
-package Model;
-import View.View;
+package model;
+import view.View;
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Callable;
 
-public class Division implements Callable {
+public class Plus implements Callable {
     private List<BigDecimal> forNumbers = new ArrayList<>();
-    public Division(List<BigDecimal> forNumbers) {
+    public Plus(List<BigDecimal> forNumbers) {
         this.forNumbers = forNumbers;
     }
-    public static ArrayList<BigDecimal> divisionMain() {
+    public static ArrayList<BigDecimal> plusMain() {
         ArrayList<BigDecimal> inputBigDecimalNumbers = new ArrayList<>();
         while(true) {
             try {
@@ -28,11 +27,11 @@ public class Division implements Callable {
 
     @Override
     public String call() {
-        BigDecimal result = forNumbers.get(0);
-        for(int i = 1; i < forNumbers.size(); i++) {
-            result = result.divide(forNumbers.get(i), 10, RoundingMode.HALF_EVEN);
+        BigDecimal result = BigDecimal.valueOf(0);
+        for(BigDecimal d: forNumbers) {
+            result = result.add(d);
         }
-        String s = View.divisionResult;
+        String s = View.plusResult;
         for (BigDecimal d : forNumbers) {
             s = s + d + " ";
         }

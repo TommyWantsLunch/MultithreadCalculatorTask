@@ -1,6 +1,6 @@
-package Controller;
-import Model.Model;
-import View.View;
+package controller;
+import model.Model;
+import view.View;
 
 public class Controller {
     private final Model model = new Model();

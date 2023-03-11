@@ -1,5 +1,5 @@
-package Model;
-import View.View;
+package model;
+import view.View;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;

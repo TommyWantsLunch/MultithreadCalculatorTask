@@ -1,21 +1,21 @@
-package Model;
-import View.View;
+package model;
+import view.View;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Callable;
 
-public class Plus implements Callable {
+public class Minus implements Callable {
     private List<BigDecimal> forNumbers = new ArrayList<>();
-    public Plus(List<BigDecimal> forNumbers) {
+    public Minus(List<BigDecimal> forNumbers) {
         this.forNumbers = forNumbers;
     }
-    public static ArrayList<BigDecimal> plusMain() {
+    public static ArrayList<BigDecimal> minusMain() {
         ArrayList<BigDecimal> inputBigDecimalNumbers = new ArrayList<>();
         while(true) {
             try {
-                ArrayList<String> inputNumbers = View.listOfUserNumbers();
-                for (String s : inputNumbers) {
+                ArrayList<String> inputStringNumbers = View.listOfUserNumbers();
+                for (String s : inputStringNumbers) {
                     inputBigDecimalNumbers.add(BigDecimal.valueOf(Double.parseDouble(s)));
                 }
                 break;
@@ -27,11 +27,11 @@ public class Plus implements Callable {
 
     @Override
     public String call() {
-        BigDecimal result = BigDecimal.valueOf(0);
-        for(BigDecimal d: forNumbers) {
-            result = result.add(d);
+        BigDecimal result = forNumbers.get(0);
+        for(int i = 1; i < forNumbers.size(); i++) {
+            result = result.subtract(forNumbers.get(i));
         }
-        String s = View.plusResult;
+        String s = View.minusResult;
         for (BigDecimal d : forNumbers) {
             s = s + d + " ";
         }

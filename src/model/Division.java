@@ -1,21 +1,22 @@
-package Model;
-import View.View;
+package model;
+import view.View;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Callable;
 
-public class Minus implements Callable {
+public class Division implements Callable {
     private List<BigDecimal> forNumbers = new ArrayList<>();
-    public Minus(List<BigDecimal> forNumbers) {
+    public Division(List<BigDecimal> forNumbers) {
         this.forNumbers = forNumbers;
     }
-    public static ArrayList<BigDecimal> minusMain() {
+    public static ArrayList<BigDecimal> divisionMain() {
         ArrayList<BigDecimal> inputBigDecimalNumbers = new ArrayList<>();
         while(true) {
             try {
-                ArrayList<String> inputStringNumbers = View.listOfUserNumbers();
-                for (String s : inputStringNumbers) {
+                ArrayList<String> inputNumbers = View.listOfUserNumbers();
+                for (String s : inputNumbers) {
                     inputBigDecimalNumbers.add(BigDecimal.valueOf(Double.parseDouble(s)));
                 }
                 break;
@@ -29,9 +30,9 @@ public class Minus implements Callable {
     public String call() {
         BigDecimal result = forNumbers.get(0);
         for(int i = 1; i < forNumbers.size(); i++) {
-            result = result.subtract(forNumbers.get(i));
+            result = result.divide(forNumbers.get(i), 10, RoundingMode.HALF_EVEN);
         }
-        String s = View.minusResult;
+        String s = View.divisionResult;
         for (BigDecimal d : forNumbers) {
             s = s + d + " ";
         }

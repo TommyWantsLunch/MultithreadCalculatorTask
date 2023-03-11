@@ -1,11 +1,5 @@
-package View;
+package view;
 
-import Model.Division;
-import Model.Minus;
-import Model.Multiply;
-import Model.Plus;
-
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
